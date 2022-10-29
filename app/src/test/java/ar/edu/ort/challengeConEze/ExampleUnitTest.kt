@@ -1,4 +1,4 @@
-package ar.edu.ort.proyectosabrina
+package ar.edu.ort.challengeConEze
 
 import org.junit.Test
 
