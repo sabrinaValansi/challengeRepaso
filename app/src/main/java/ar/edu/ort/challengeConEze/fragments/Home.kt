@@ -14,6 +14,7 @@ import ar.edu.ort.challengeConEze.adapter.AdapterProducto
 import ar.edu.ort.challengeConEze.listener.onProductoClickedListener
 import ar.edu.ort.challengeConEze.model.Producto
 import ar.edu.ort.challengeConEze.utils.Images
+import ar.edu.ort.challengeConEze.utils.User
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -56,7 +57,7 @@ class Home : Fragment(), onProductoClickedListener {
 
         textoHome = view.findViewById(R.id.textHome)
 
-        textoHome.text = "Hola, ${HomeArgs.fromBundle(requireArguments()).nombre}"
+        textoHome.text = "Hola, ${User.userName}"
 
         recycler = view.findViewById(R.id.recyclerProductos)
 
