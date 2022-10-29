@@ -29,7 +29,7 @@ class Login : Fragment() {
 
     private lateinit var userText : EditText
     private lateinit var passText : EditText
-    private lateinit var botonContinuar:Button
+    private lateinit var botonContinuar: Button
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +55,7 @@ class Login : Fragment() {
 
         userText=view.findViewById(R.id.usuario)
         passText=view.findViewById(R.id.contraseña)
-        botonContinuar = view.findViewById<Button>(R.id.botonLogin)
+        botonContinuar = view.findViewById<Button>(R.id.buttonContinuar)
 
         val navController = findNavController()
 

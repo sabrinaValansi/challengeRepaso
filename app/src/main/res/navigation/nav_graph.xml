@@ -31,7 +31,11 @@
         android:id="@+id/detail"
         android:name="ar.edu.ort.challengeConEze.fragments.Detail"
         android:label="fragment_detail"
-        tools:layout="@layout/fragment_detail" />
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="producto"
+            app:argType="ar.edu.ort.challengeConEze.model.Producto" />
+    </fragment>
     <fragment
         android:id="@+id/settings"
         android:name="ar.edu.ort.challengeConEze.fragments.Settings"

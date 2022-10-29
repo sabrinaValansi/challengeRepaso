@@ -6,8 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ar.edu.ort.challengeConEze.R
+import ar.edu.ort.challengeConEze.adapter.AdapterProducto
+import ar.edu.ort.challengeConEze.listener.onProductoClickedListener
+import ar.edu.ort.challengeConEze.model.Producto
+import ar.edu.ort.challengeConEze.utils.Images
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,14 +25,14 @@ private const val ARG_PARAM2 = "param2"
  * Use the [Home.newInstance] factory method to
  * create an instance of this fragment.
  */
-class Home : Fragment() {
+class Home : Fragment(), onProductoClickedListener {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
     private lateinit var textoHome : TextView
-    private lateinit var recycler:RecyclerView
-    // private lateinit var productos : List<Producto>
+    private lateinit var recycler : RecyclerView
+    private lateinit var productos : List<Producto>
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,9 +54,26 @@ class Home : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        textoHome=view.findViewById(R.id.textHome)
+        textoHome = view.findViewById(R.id.textHome)
 
         textoHome.text = "Hola, ${HomeArgs.fromBundle(requireArguments()).nombre}"
+
+        recycler = view.findViewById(R.id.recyclerProductos)
+
+        llenarListaProductos()
+    }
+
+    private fun llenarListaProductos() {
+        val producto1 = Producto("Iphone 14", Images.iphone , 4000000.00)
+        val producto2 = Producto("Remera standard", Images.remera , 700.00)
+        val producto3 = Producto("Zapatilla Running", Images.zapatilla , 16000.00)
+
+        productos = listOf(producto1, producto2, producto3)
+
+        val layoutManager = LinearLayoutManager(context)
+        recycler.layoutManager = layoutManager
+        recycler.adapter = AdapterProducto(productos, this)
+
     }
 
 
@@ -72,5 +95,9 @@ class Home : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onProductoSeleccionado(producto: Producto) {
+        findNavController().navigate(HomeDirections.actionHome2ToDetail(producto))
     }
 }
